@@ -1,3 +1,5 @@
+import useSWR from 'swr'
+
 import {
   Link as ChakraLink,
   Text,
@@ -14,6 +16,13 @@ import { Main } from '../components/Main'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { CTA } from '../components/CTA'
 import { Footer } from '../components/Footer'
+
+const fetcher = (url: string, token: string) =>
+  fetch(url, {
+    method: 'GET',
+    headers: new Headers({ 'Content-Type': 'application/json', token }),
+    credentials: 'same-origin',
+  }).then((res) => res.json())
 
 const Index = () => (
   <Container height="100vh">
