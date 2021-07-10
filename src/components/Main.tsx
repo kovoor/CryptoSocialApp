@@ -1,4 +1,5 @@
 import { Stack, StackProps } from '@chakra-ui/react'
+import Navbar from '../components/Navbar'
 
 export const Main = (props: StackProps) => (
   <Stack

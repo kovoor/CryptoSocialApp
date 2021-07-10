@@ -1,0 +1,90 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email   String   @unique
+  name    String?
+  role    Role     @default(USER)
+  posts   Post[] //a user's published posts
+  profile Profile?
+  comments Comment[]
+  postLikes Post[] @relation("PostLikes")
+  postShares  Post[] @relation("PostShares")
+  bookmarks Bookmark[]
+  commentLikes Comment[] @relation("CommentLikes")
+  commentShares Comment[] @relation("CommentShares")
+  followedBy  User[]   @relation("UserFollows", references: [id])
+  following   User[]   @relation("UserFollows", references: [id])
+}
+
+model Profile {
+  id      Int     @id @default(autoincrement())
+  bio     String
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+}
+
+model Post {
+  id         Int         @id @default(autoincrement())
+  createdAt  DateTime    @default(now())
+  updatedAt DateTime @updatedAt
+  title      String
+  published  Boolean     @default(false)
+  author     User        @relation(fields: [authorId], references: [id])
+  authorId   Int
+  categories Category[]  @relation(references: [id])
+  tags Tag[]
+  likes     User[]  @relation("PostLikes", fields: [likedById], references: [id])
+  shares    User[]  @relation("PostShares", fields: [sharedById], references: [id])
+  likedById Int?
+  sharedById Int?
+  bookmarks Bookmark[]
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  posts Post[]  @relation(references: [id])
+}
+
+model Tag {
+  id    Int     @id @default(autoincrement())
+  name  String
+  posts Post[]  @relation(references: [id])
+}
+
+model Comment {
+  id         Int         @id @default(autoincrement())
+  createdAt  DateTime    @default(now())
+  updatedAt DateTime @updatedAt
+  comment String 
+  userId Int
+  user     User        @relation(fields: [userId], references: [id])
+  likes User[]  @relation("CommentLikes", fields: [likedById], references: [id])
+  likedById Int?
+  shares User[] @relation("CommentShares", fields: [sharedById], references: [id])
+  sharedById Int?
+}
+
+model Bookmark {
+  id      Int     @id @default(autoincrement())
+  createdAt  DateTime    @default(now())
+  userId Int
+  user     User        @relation(fields: [userId], references: [id]) 
+  postId Int
+  post     Post        @relation(fields: [postId], references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}

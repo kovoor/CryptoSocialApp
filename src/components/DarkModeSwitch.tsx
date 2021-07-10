@@ -5,9 +5,10 @@ export const DarkModeSwitch = () => {
   const isDark = colorMode === 'dark'
   return (
     <Switch
-      position="fixed"
-      top="1rem"
-      right="1rem"
+      position="relative"
+      align="center"
+      top={{base: 0, md: "0.7rem" }}
+      right="rem"
       color="green"
       isChecked={isDark}
       onChange={toggleColorMode}
