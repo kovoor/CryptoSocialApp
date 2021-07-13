@@ -53,10 +53,12 @@ export default function Login() {
                                 <Link color={'blue.400'}>Forgot password?</Link>
                             </Stack>
                             <Button
-                                bg={'blue.400'}
+                                // bg={'blue.400'}
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
                                 color={'white'}
                                 _hover={{
-                                    bg: 'blue.500',
+                                    // bg: 'blue.500',
+                                    bgGradient: 'linear(to-l, #7928CA, #FF0080)',
                                 }}>
                                 Sign in
                             </Button>

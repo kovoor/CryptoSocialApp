@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link'
+
 import {
     Box,
     Center,
@@ -8,8 +10,9 @@ import {
     Avatar,
     useColorModeValue,
     Button,
-    Link,
-    Divider
+    Code,
+    Link as ChakraLink,
+    Divider,
 } from '@chakra-ui/react';
 
 export default function Card() {
@@ -45,7 +48,10 @@ export default function Card() {
                         color={useColorModeValue('gray.700', 'white')}
                         fontSize={'md'}
                         fontFamily={'body'}>
-                        <Link>Boost your conversion rate</Link>
+                        <Link href={{
+                            pathname: '/post/[pid]/[pslug]',
+                            query: { pid: 1, pslug: 'hello-world' },
+                        }}> Hello World!</Link>
                     </Heading>
                     <Text color={'gray.500'} fontSize={'sm'}>
                         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam

@@ -39,6 +39,13 @@ const Index = () => {
      <Container>
        <HStack spacing="25px" align="start">
         <VStack mt={2}>
+           {/* {posts.map((post) => (
+             <li key={post.id}>
+               <Card href={`/blog/${encodeURIComponent(post.slug)}`}>
+                 <a>{post.title}</a>
+               </Card>
+             </li>
+           ))} */}
             <Card />
             <Card />
             <Card />

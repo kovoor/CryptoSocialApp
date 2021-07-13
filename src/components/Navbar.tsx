@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import {
   Box,
   Flex,
@@ -7,7 +9,7 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
+  Link as ChakraLink,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -17,6 +19,7 @@ import {
   Center,
   Input,
 } from '@chakra-ui/react';
+
 import {
   HamburgerIcon,
   CloseIcon,
@@ -39,15 +42,16 @@ export default function Navbar() {
         color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
         py={{ base: 2 }}
-        px={{ base: 4, md: 32 }}
+        px={{ base: 4, md: 36 }}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
         <Flex
-          flex={{ base: 0.5, md: 'auto' }}
+          // flex={{ md: 'auto' }}
           // flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
+          mr={{base: 4 }}
           // ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
           <IconButton
@@ -59,26 +63,28 @@ export default function Navbar() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1.3 }} justify={{ base: 'start', md: 'start' }}>
-          <Link
+        {/* <Flex flex={{ base: 1.3 }} justify={{ base: 'start', md: 'start' }}> */}
+        <Flex flex={{ base: 'auto', md: 'none' }}>
+          <ChakraLink
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             color={useColorModeValue('gray.800', 'white')}
             href={'/'}>
             Logo
-          </Link>
+          </ChakraLink>
 
-          <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+          <Flex display={{ base: 'none', md: 'inline' }} ml={6} mr={6}>
             <DesktopNav />
           </Flex>
         </Flex>
 
-        <Flex justify={{ base: 'center', md: 'flex' }}>
-          <SearchBar />
+        <Flex flex={{ md: 'auto' }}>
+          <SearchBar /> 
         </Flex>
+    
 
         <Stack
-          flex={{ base: 1, md: 0 }}
+          flex={{ md: 0 }}
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
@@ -126,7 +132,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Link
+              <ChakraLink
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'sm'}
@@ -137,7 +143,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }}>
                 {navItem.label}
-              </Link>
+              </ChakraLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -164,7 +170,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Link
+    <ChakraLink
       href={href}
       role={'group'}
       display={'block'}
@@ -192,7 +198,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Link>
+    </ChakraLink>
   );
 };
 
@@ -216,7 +222,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        as={ChakraLink}
         href={href ?? '#'}
         justify={'space-between'}
         align={'center'}
@@ -249,9 +255,9 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           align={'start'}>
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <ChakraLink key={child.label} py={2} href={child.href}>
                 {child.label}
-              </Link>
+              </ChakraLink>
             ))}
         </Stack>
       </Collapse>

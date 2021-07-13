@@ -9,8 +9,8 @@ import {
 InputGroup,
 InputLeftElement,
 InputRightElement,
-
     Input,
+    Kbd,
 } from '@chakra-ui/react';
 import {
     SearchIcon,
@@ -22,18 +22,21 @@ import {
 
 export default function SearchBar() {
     return (
-        <Box>
-        <Stack spacing={0} display={{ base: "none", md: "inline" }}>
-            <InputGroup>
+        <Flex w="full">
+            <Stack w="full" display={{ base: "none", md: "flex" }} mr={8}>
+                <InputGroup >
                 <InputLeftElement
                     pointerEvents="none"
                     children={<SearchIcon color="gray.300" />}
                 />
-                <Input variant="filled" placeholder="Search for questions, topics, categories" />
-            </InputGroup>
-        </Stack>
-        <SearchBarMobile />
-        </Box >
+                    <Input variant="filled" placeholder="Search for questions, topics, categories" />
+                    <InputRightElement opacity={0.5} width="4.5rem">
+                        <Kbd>⌘</Kbd> + <Kbd>K</Kbd>
+                    </InputRightElement>
+                </InputGroup>
+            </Stack>
+            <SearchBarMobile />
+        </Flex>
     )
 }
 
