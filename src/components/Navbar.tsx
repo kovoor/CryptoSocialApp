@@ -28,9 +28,8 @@ import {
 } from '@chakra-ui/icons';
 
 import SearchBar from '../components/SearchBar';
-
-
 import { DarkModeSwitch } from './DarkModeSwitch';
+import { useState } from 'react';
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -51,7 +50,7 @@ export default function Navbar() {
           // flex={{ md: 'auto' }}
           // flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          mr={{base: 4 }}
+          mr={{ base: 4 }}
           // ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
           <IconButton
@@ -79,9 +78,9 @@ export default function Navbar() {
         </Flex>
 
         <Flex flex={{ md: 'auto' }}>
-          <SearchBar /> 
+          <SearchBar />
         </Flex>
-    
+
 
         <Stack
           flex={{ md: 0 }}
@@ -96,21 +95,21 @@ export default function Navbar() {
             href={'/login'}>
             Sign In
           </Button>
-                  <Button
-                      display={{ base: 'none', md: 'inline-flex' }}
-                      fontSize={'sm'}
-                      fontWeight={600}
-                      color={'white'}
-                      bgGradient="linear(to-l, #7928CA, #FF0080)"
-                      href={'/signup'}
-                      _hover={{
-                          bg: "linear(to-l, #7928CA, #FF0080)",
-                          boxShadow: "2xl white"
+          <Button
+            display={{ base: 'none', md: 'inline-flex' }}
+            fontSize={'sm'}
+            fontWeight={600}
+            color={'white'}
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            href={'/signup'}
+            _hover={{
+              bg: "linear(to-l, #7928CA, #FF0080)",
+              boxShadow: "2xl white"
 
-                      }}>
+            }}>
             Sign Up
           </Button>
-                  <DarkModeSwitch />
+          <DarkModeSwitch />
         </Stack>
       </Flex>
 

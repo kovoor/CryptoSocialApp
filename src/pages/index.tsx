@@ -32,14 +32,14 @@ import prisma from '../../lib/prisma'
 import { NONAME } from 'dns'
 
 const Index = () => {
-  
- return (
-   <div> 
-     <Navbar />
-     <Container>
-       <HStack spacing="25px" align="start">
-        <VStack mt={2}>
-           {/* {posts.map((post) => (
+
+  return (
+    <div>
+      <Navbar />
+      <Container>
+        <HStack spacing="25px" align="start">
+          <VStack mt={2}>
+            {/* {posts.map((post) => (
              <li key={post.id}>
                <Card href={`/blog/${encodeURIComponent(post.slug)}`}>
                  <a>{post.title}</a>
@@ -51,17 +51,17 @@ const Index = () => {
             <Card />
             <Card />
             <Card />
-        </VStack>
-         <VStack display={{ base: "none", md: "inline" }} w="20em" align="start">
-           <UserProfileSnippet /> 
-         </VStack>
-       </HStack>
-     </Container>
-     
-     
-     <Footer />
-   </div>
-)
+          </VStack>
+          <VStack display={{ base: "none", md: "inline" }} w="20em" align="start">
+            <UserProfileSnippet />
+          </VStack>
+        </HStack>
+      </Container>
+
+
+      <Footer />
+    </div>
+  )
 }
 
 export default Index
